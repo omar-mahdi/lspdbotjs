@@ -73,4 +73,4 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
     }
 });
 
-client.login('NTAyMTA3MTk3NDU5OTIyOTQ0.XuexbA.IdsnOzNSoclUMfa13RB_Y4dZJig');
+client.login('NTk2NzYyMTUwODYxNTM3Mjkx.XuyL-w.yCp3PYZuY6-zS5XJw_2c4MqCZb8');

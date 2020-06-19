@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const getProfileInfo = async(id: number): Promise<any> => {
-    const testRequest = await axios.get(`https://pd.lsgov.us/forum/memberlist.php?mode=viewprofile&u=${id}`);
+    const testRequest = await axios.get(`https://sd.lsgov.us/forum/memberlist.php?mode=viewprofile&u=${id}`);
     const discordTag = testRequest.data.match(/\w+\#+\d+/g);
     const usernameRegex = testRequest.data.match(/(\w+)_(\w+)<\/span>/gm);
     let usernameArray: Array<string> = [];
-
+    
     if (usernameRegex) {
         usernameArray = usernameRegex[0].split('_');
         usernameArray[1] = usernameArray[1].replace(/<.+/g, '')

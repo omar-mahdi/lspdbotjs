@@ -5,7 +5,7 @@ const requestLogin = {
     url: 'https://salets.lsgov.us/users/auth',
     jar: true,
     form: {
-        username: 'Steve',
+        username: 'SDSteve',
         password: 'Dakodakos1'
     },
     followAllRedirects: true
@@ -22,7 +22,7 @@ export function createUser(username: string, first: string, last:string, departm
                     username: username,
                     first_name: first,
                     last_name: last,
-                    department: 1,
+                    department: 2,
                     admin: admin,
                     roles: roles,
                     active: active
@@ -44,7 +44,7 @@ export function createUser(username: string, first: string, last:string, departm
                                 username: username,
                                 first_name: first,
                                 last_name: last,
-                                department: 1,
+                                department: 2,
                                 admin: admin,
                                 roles: roles,
                                 active: active
