@@ -36,21 +36,17 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
                     const discordName = roles.find(role => role.forumName == group)?.discordName;
                     // Finds the role object based on the previously fetched name
                     const role = msg.guild?.roles.cache.find(role => role.name == discordName);
-                    if (role?.name == 'Supervisors') {
+                    if (role?.name == 'Supervisory Staff') {
                         admin = 1;
-                    } else if (role?.name == 'Detectives') {
-                        admin = 2;
-                    } else if (role?.name == 'Command Officers') {
+                        saletsRoles.push('judge');
+                    } else if (role?.name == 'Command Staff') {
                         admin = 4;
                         saletsRoles.push('admin');
-                        saletsRoles.push('judge');
-                    } else if (role?.name == 'GSS') {
+                    } else if (role?.name == 'GET') {
                         saletsRoles.push('gangs');
-                    } else if (role?.name == 'MES') {
+                    } else if (role?.name == 'OSS') {
                         saletsRoles.push('gangs');
-                    } else if (role?.name == 'GSS CMD') {
-                        saletsRoles.push('gangs-admin');
-                    } else if (role?.name == 'MES CMD') {
+                    } else if (role?.name == 'GET Supervisors') {
                         saletsRoles.push('gangs-admin');
                     }
                     // Adds the role
