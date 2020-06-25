@@ -13,7 +13,7 @@ const getProfileInfo = async(id: number): Promise<any> => {
     }
 
     if (discordTag && usernameRegex) {
-        return {tag: discordTag[0], data: testRequest.data, username: usernameArray};
+        return {tag: discordTag, data: testRequest.data, username: usernameArray};
     } else {
         return false;
     }
