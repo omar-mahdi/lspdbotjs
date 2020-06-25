@@ -16,6 +16,7 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
     const command = args.shift()?.toLowerCase();
 
     if (command == 'verify') {
+        msg.reply(msg.author.tag)
         const verification = await verifyProfile(Number(args[0]), msg.author.tag);
         if (verification != false) {
             await msg.member?.roles.set([]);
