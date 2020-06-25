@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const getProfileInfo = async(id: number): Promise<any> => {
     const testRequest = await axios.get(`https://pd.lsgov.us/forum/memberlist.php?mode=viewprofile&u=${id}`);
-    const discordTag = testRequest.data.match(/\w+\#+\d+/g);
+    const discordTagRegex = testRequest.data.match(/<dt>Discord Tag:<\/dt> <dd>(.+)<\/dd>/g)[0].match(/d>.+\#\d+/);
+    const discordTag = discordTagRegex[0].substr(discordTagRegex[0].indexOf('d>') + 2);
     const usernameRegex = testRequest.data.match(/(\w+)_(\w+)<\/span>/gm);
     let usernameArray: Array<string> = [];
 
