@@ -26,6 +26,9 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
                     return false;
                 }
 
+                // If user has no groups
+                if (verification.groups == null) return null;
+
                 let roles: Array<any> = saletsData;
                 let admin = 0;
                 let saletsRoles: Array<String> = [];
