@@ -54,6 +54,10 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
                         saletsRoles.push('gangs-admin');
                     } else if (role?.name == 'MES CMD') {
                         saletsRoles.push('gangs-admin');
+                    } else if (role?.name == 'A-PLTN') {
+                        saletsRoles.push('gangs');
+                    } else if (role?.name == 'D-PLTN') {
+                        saletsRoles.push('gangs');
                     }
                     // Adds the role
                     if (role) msg.member?.roles.add(role);
