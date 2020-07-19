@@ -40,10 +40,12 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
                         admin = 1;
                     } else if (role?.name == 'Detectives') {
                         admin = 2;
+                        saletsRoles.push('detective');
                     } else if (role?.name == 'Command Officers') {
                         admin = 4;
                         saletsRoles.push('admin');
                         saletsRoles.push('judge');
+                        saletsRoles.push('detective');
                     } else if (role?.name == 'GSS') {
                         saletsRoles.push('gangs');
                     } else if (role?.name == 'MES') {

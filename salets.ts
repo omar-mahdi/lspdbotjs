@@ -2,7 +2,7 @@ import request from 'request';
 
 const requestLogin = {
     method: 'POST',
-    url: 'https://salets.lsgov.us/users/auth',
+    url: 'https://salets.us/users/auth',
     jar: true,
     form: {
         username: 'Steve',
@@ -16,7 +16,7 @@ export function createUser(username: string, first: string, last:string, departm
         request(requestLogin, (err, res, body) => {
             const requestCreateUser = {
                 method: 'POST',
-                url: 'https://salets.lsgov.us/users/store',
+                url: 'https://salets.us/users/store',
                 jar: true,
                 form: {
                     username: username,
@@ -32,13 +32,13 @@ export function createUser(username: string, first: string, last:string, departm
             request(requestCreateUser, (err, res, body) => {
                 if(res.statusCode == 400) {
                     const findUser = {
-                        url: `https://salets.lsgov.us/users/find?username=${username}`,
+                        url: `https://salets.us/users/find?username=${username}`,
                         jar: true
                     }
                     request(findUser, (err, res, body) => {
                         const requestEditUser = {
                             method: 'PATCH',
-                            url: `https://salets.lsgov.us/users/${body}`,
+                            url: `https://salets.us/users/${body}`,
                             jar: true,
                             form: {
                                 username: username,
@@ -67,7 +67,7 @@ export function retrieveRoles(callback: (body: any) => void) {
     request(requestLogin, (err, res, body) => {
         const requestGetRoles = {
             method: 'GET',
-            url: 'https://salets.lsgov.us/steve/roles',
+            url: 'https://salets.us/steve/roles',
             jar: true,
         }
 
