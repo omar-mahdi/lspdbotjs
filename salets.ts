@@ -60,25 +60,46 @@ export function createUser(username: string, first: string, last:string, departm
                 }
             })
         });
-    return false;
-}
-
-export function retrieveRoles(callback: (body: any) => void) {
-    request(requestLogin, (err, res, body) => {
-        const requestGetRoles = {
-            method: 'GET',
-            url: 'https://salets.us/steve/roles',
-            jar: true,
-        }
-
-        request(requestGetRoles, (err, res, body) => {
-            try {
-                JSON.parse(body);
-            } catch {
-                return callback(false);
+        return false;
+    }
+    
+    export function retrieveRoles(callback: (body: any) => void) {
+        request(requestLogin, (err, res, body) => {
+            const requestGetRoles = {
+                method: 'GET',
+                url: 'https://salets.us/steve/roles',
+                jar: true,
             }
+            
+            request(requestGetRoles, (err, res, body) => {
+                try {
+                    JSON.parse(body);
+                } catch {
+                    return callback(false);
+                }
+                
+                return callback(JSON.parse(body));
+            })
+        });
+    }
+    
+    export function resetPw(username: string): boolean {
+        request(requestLogin, (err, res, body) => {
+            const findUser = {
+                url: `https://salets.us/users/find?username=${username}`,
+                jar: true
+            }
+            console.log(username)
+            request(findUser, (err, res, body) => {
+                console.log(body)
+                const requestResetPass = {
+                    method: 'PATCH',
+                    url: `https://salets.us/users/${body}/reset`,
+                    jar: true,
+                }
+                request(requestResetPass);
+            });
+        });
 
-            return callback(JSON.parse(body));
-        })
-    });
-}
+        return false;
+    }

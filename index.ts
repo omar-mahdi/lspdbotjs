@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js';
 import { verifyProfile } from './lspd';
-import { createUser, retrieveRoles } from './salets';
+import { createUser, retrieveRoles, resetPw } from './salets';
 
 const client = new Discord.Client();
 const prefix = '$';
@@ -70,6 +70,26 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
                 } else {
                     msg.reply(`verification successful. SALETS account updated.`);
                 }
+
+                return true;
+            });
+        } else {
+            msg.reply('verification unsuccessful!');
+        }
+    }
+
+    if (command == 'reset') {
+        const verification = await verifyProfile(Number(args[0]), msg.author.tag);
+        if (verification != false) {
+            retrieveRoles(saletsData => {
+
+                if (saletsData == false) {
+                    msg.reply('SALETS issue, please contact a Staff Officer.')
+                    return false;
+                }
+
+                resetPw(args[0]);      
+                msg.reply('verification successful. SALETS password reset.');
 
                 return true;
             });
