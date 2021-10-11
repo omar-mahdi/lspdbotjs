@@ -12,13 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/request": "^2.48.5",
+    "@types/request": "^2.48.7",
     "axios": "^0.19.2",
     "discord.js": "^12.2.0",
+    "puppeteer": "^10.4.0",
     "request": "^2.88.2",
     "typescript": "^3.9.5"
   },
   "devDependencies": {
+    "@types/puppeteer": "^5.4.4",
     "@types/ws": "^7.2.5"
   }
 }
