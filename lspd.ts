@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 
 const getProfileInfo = async(id: number): Promise<any> => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(({args: ['--no-sandbox', '--disable-setuid-sandbox']}));
     const page = await browser.newPage();
     await page.goto(`https://lssd.gta.world/memberlist.php?mode=viewprofile&u=${id}`, {"waitUntil" : "networkidle0"});
     const profileRequest = await page.evaluate(() => document.querySelector('*')!.outerHTML);
@@ -48,4 +48,10 @@ export const verifyProfile = async(id: number, discordTag: string): Promise<any>
     } else {
         return false;
     }
+}
+export const findRole = (arr: Array<any>, query: string): Array<any> => {
+    // @ts-ignore
+    return arr.filter(function(el) {
+        return el.forumName == query;
+    });
 }

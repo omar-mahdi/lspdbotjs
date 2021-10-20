@@ -1,5 +1,5 @@
 import * as Discord from 'discord.js';
-import { verifyProfile } from './lspd';
+import { verifyProfile, findRole } from './lspd';
 import { retrieveRoles } from './salets';
 
 const client = new Discord.Client();
@@ -33,15 +33,21 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
 
                 verification.groups.forEach((group: string) => {
                     // Get the role's discord name from the master roles list
-                    const discordName = roles.find(role => role.forumName == group)?.discordName;
+                    const discordNames = findRole(roles, group);
+                    // const discordName = roles.find(role => role.forumName == group)?.discordName;
+
                     // Finds the role object based on the previously fetched name
-                    const role = msg.guild?.roles.cache.find(role => role.name == discordName);
+                    discordNames.forEach(discordName => {
+                        const discordRole = roles.find(role => role.forumName == discordName)?.discordName;
+                        const role = msg.guild?.roles.cache.find(role => role.name == discordRole);
+                        if (role) {
+                            msg.member?.roles.add(role);
+                            console.log(`Added role ${role.name} to Discord user: ${msg.member?.user.tag} Forum ID: ${Number(args[0])}`);
+                            }
+                    });
                     
                     // Adds the role
-                    if (role) {
-                        msg.member?.roles.add(role);
-                        console.log(`Added role ${role.name} to Discord user: ${msg.member?.user.tag} Forum ID: ${Number(args[0])}`);
-                        }
+
                 });
 
                 msg.reply(`verification successful.`);
