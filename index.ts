@@ -6,7 +6,7 @@ const client = new Discord.Client();
 const prefix = '$';
 
 client.on('ready', async () => {
-    client.user?.setActivity('End my suffering'); 
+    client.user?.setActivity('TOMBSTONE JIM'); 
 });
 
 client.on('message', async (msg: Discord.Message): Promise<void> => {
@@ -18,7 +18,14 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
     if (command == 'verify') {
         const verification = await verifyProfile(Number(args[0]), msg.author.tag);
         if (verification != false) {
+
+        if (msg.member?.roles.cache.has('666196161509588994')) {
+            await msg.member?.roles.set(['666196161509588994']);
+        } else {
             await msg.member?.roles.set([]);
+        }
+              
+
             retrieveRoles(saletsData => {
 
                 if (saletsData == false) {
