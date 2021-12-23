@@ -7,11 +7,15 @@ const getProfileInfo = async(id: number): Promise<any> => {
     const profileRequest = await page.evaluate(() => document.querySelector('*')!.outerHTML);
     
     await browser.close();
-    const discordTagRegex = profileRequest.match(/<dt>Discord ID:<\/dt> <dd>(.+)<\/dd>/g)![0].match(/d>.+\#\d+/);
-    const discordTag = discordTagRegex![0].substr(discordTagRegex![0].indexOf('d>') + 2);
-    if (discordTag) {
-        return {tag: discordTag, data: profileRequest};
-    } else {
+    try {
+        const discordTagRegex = profileRequest.match(/<dt>Discord ID:<\/dt> <dd>(.+)<\/dd>/g)![0].match(/d>.+\#\d+/);
+        const discordTag = discordTagRegex![0].substr(discordTagRegex![0].indexOf('d>') + 2);
+        if (discordTag) {
+            return {tag: discordTag, data: profileRequest};
+        } else {
+            return false;
+        }
+    } catch (err: unknown) {
         return false;
     }
 };
