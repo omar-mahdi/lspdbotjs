@@ -99,4 +99,4 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
     }
 });
 
-client.login('NTAyMTA3MTk3NDU5OTIyOTQ0.XuexbA.IdsnOzNSoclUMfa13RB_Y4dZJig');
+client.login(env('token'));
