@@ -19,7 +19,7 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
         const verification = await verifyProfile(Number(args[0]), msg.author.tag);
         if (verification != false) {
             console.log(verification);
-            
+            // exclude boosters
             if (msg.member?.roles.cache.has('666196161509588994')) {
                 await msg.member?.roles.set(['666196161509588994']);
             } else {
@@ -68,4 +68,4 @@ client.on('message', async (msg: Discord.Message): Promise<void> => {
     }
 });
 
-client.login('ODk2NDM4NTczMzE2ODMzMzcz.YWHHeg.6N0-QWPQ3jQKx72PrR4u66Dtt2M');
+client.login(env('token'));
